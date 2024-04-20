@@ -47,16 +47,16 @@ public class PlayerController : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+	{
+		Cursor.lockState = CursorLockMode.Locked;
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
+	// Update is called once per frame
+	void Update()
+	{
 		onSurface = Physics.CheckSphere(surfaceCheck.position, surfaceDistance, surfaceMask);
 
-		if(onSurface && velocity.y < 0)
+		if (onSurface && velocity.y < 0)
 		{
 			velocity.y = -2f;
 		}
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
 			speed = playerSpeed;
 		Vector3 direction = new Vector3(horizontal_axis, 0, vertical_axis).normalized;
 
-		if(direction.magnitude < 0.1f) 
+		if (direction.magnitude < 0.1f)
 		{
 			speed = 0;
 		}
@@ -98,7 +98,8 @@ public class PlayerController : MonoBehaviour
 		controller.Move(moveDirection.normalized * speed * Time.deltaTime);
 
 		animator.SetFloat("Speed", controller.velocity.magnitude);
-
+		animator.SetFloat("XAxis", horizontal_axis);
+		animator.SetFloat("YAxis", vertical_axis);
 	}
 
 	void Jump()
